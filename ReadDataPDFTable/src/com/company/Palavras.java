@@ -4,8 +4,7 @@ public class Palavras {
 
     public static String[] REMOVER = {
 
-            "0","1","2","3","4","5","6","7","8","9",
-            "PODER", "JUDICIÁRIO", "DO",
+            /*"PODER", "JUDICIÁRIO", "DO",
             "ESTADO",
             "RIO",
             "DE",
@@ -34,6 +33,32 @@ public class Palavras {
             "MÉRITO",
             "SEM",
             "HOMOLOGAÇÃO",
-            "ACORDO",
+            "ACORDO",*/
+
+            "PODER JUDICIÁRIO DO ESTADO DO RIO DE JANEIRO",
+            "DGJUR DEIGE",
+            "Produtividade",
+            "de",
+            "Juízes",
+            "Maio",
+            "Nome",
+            "Audiências",
+            "Realizadas",
+            "Conclusões",
+            "Decisões",
+            "Outras",
+            "Decisões",
+            "Terminativas",
+            "Depoimentos",
+            "Despachos",
+            "Júri",
+            "Processos",
+            "Decididos",
+            "Sentenças",
+            "com",
+            "Mérito",
+            "sem",
+            "Homologação",
+            "Acordo"
     };
 }

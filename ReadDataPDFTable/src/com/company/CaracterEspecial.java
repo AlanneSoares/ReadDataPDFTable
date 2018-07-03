@@ -1,15 +1,10 @@
 package com.company;
 
-import java.text.Normalizer;
-
 public class CaracterEspecial {
 
     public static String deleteCaracter(String pdf) {
 
-        pdf = Normalizer.normalize(pdf, Normalizer.Form.NFD)
-                //.replaceAll("[^\\p{ASCII}]", "")
-                .replaceAll("\\s+", " ")
-                .replace(".", "")
+        pdf = pdf.replace(".", "")
                 .replace(",", "")
                 .replace(";", "")
                 .replace("ª", "")
@@ -22,8 +17,8 @@ public class CaracterEspecial {
                 .replace("%", "")
                 .replace("'", "")
                 .replace("  ", "")
-                .trim()
-                .toUpperCase();
+                .replaceAll("[0-9]", "")
+                .trim();
 
         return pdf;
     }
