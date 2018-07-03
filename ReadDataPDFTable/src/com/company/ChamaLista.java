@@ -5,30 +5,31 @@ import java.util.List;
 
 public class ChamaLista {
 
-    static List<String> removePalavrasInuteis(List<String> palavras) {
+    public static List<String> removePalavras(List<String> palavras) {
 
-        List<String> palavraSemPreposicao = new ArrayList<>(palavras);
+        List<String> words = new ArrayList<>(palavras);
 
-        //for (String palavra : palavras) {
+        for (String palavra : palavras) {
 
-                /*if (palavra.length() <= 2) {
+            if (palavra.length() > 0) {
 
-                    palavraSemPreposicao.remove(palavra);
+                words.remove(palavra);
 
+            /*} else {
+
+                for (String outrasPalavras : Palavras.REMOVER) {
+
+                    if (palavra.equals(outrasPalavras)) {
+
+                        words.remove(outrasPalavras);
+
+                    }
                 }
-
-                else {*/
-
-        for (String palavra : Palavras.REMOVER) {
-
-            if (palavra.equals(palavraSemPreposicao)) {
-
-                palavraSemPreposicao.remove(palavra);
+            }
+        }*/
 
             }
-
-
         }
-        return palavraSemPreposicao;
+        return words;
     }
 }

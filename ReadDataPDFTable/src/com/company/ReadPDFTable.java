@@ -32,9 +32,14 @@ public class ReadPDFTable {
             pdDoc = new PDDocument(cosDoc);
             textoPdf = pdfStripper.getText(pdDoc);
 
-            List<String> conteudoAlterado = ChamaLista.removePalavrasInuteis(Arrays.asList(textoPdf.split(" ")));
+            textoPdf.contains((CharSequence) ChamaLista.removePalavras(Arrays.asList(CaracterEspecial.deleteCaracter(textoPdf).split(" "))));
+            //List<String> map = ChamaLista.removePalavras(Arrays.asList(CaracterEspecial.deleteCaracter(textoPdf).split(" ")));
 
-            System.out.println(conteudoAlterado);
+            /*for (int i = 1; i < map.size(); i++) {
+
+                String palavra = map.get(i);
+                System.out.println(palavra);
+            }*/
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -46,3 +51,7 @@ public class ReadPDFTable {
         return null;
     }
 }
+
+
+
+
