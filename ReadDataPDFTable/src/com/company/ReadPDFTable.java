@@ -39,7 +39,7 @@ public class ReadPDFTable {
             //System.out.println(Words.removeWords(CaracterEspecial.deleteCaracter(textoPdf)));
 
 
-            //System.out.println(CaracterEspecial.deleteCaracter(textoPdf));
+            System.out.println(CaracterEspecial.deleteCaracter(textoPdf));
 
 
         } catch (Exception e) {
