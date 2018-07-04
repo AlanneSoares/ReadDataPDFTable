@@ -4,7 +4,9 @@ public class Palavras {
 
     public static String[] REMOVER = {
 
-            /*"PODER", "JUDICIÁRIO", "DO",
+            "PODER",
+            "JUDICIÁRIO",
+            "DO",
             "ESTADO",
             "RIO",
             "DE",
@@ -33,9 +35,9 @@ public class Palavras {
             "MÉRITO",
             "SEM",
             "HOMOLOGAÇÃO",
-            "ACORDO",*/
+            "ACORDO",
 
-            "PODER JUDICIÁRIO DO ESTADO DO RIO DE JANEIRO",
+           /* "PODER JUDICIÁRIO DO ESTADO DO RIO DE JANEIRO",
             "DGJUR DEIGE",
             "Produtividade",
             "de",
@@ -59,6 +61,6 @@ public class Palavras {
             "Mérito",
             "sem",
             "Homologação",
-            "Acordo"
+            "Acordo"*/
     };
 }

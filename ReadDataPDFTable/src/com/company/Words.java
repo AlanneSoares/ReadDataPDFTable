@@ -4,7 +4,7 @@ public class Words {
 
     public static String removeWords(String pdf) {
 
-        pdf = pdf.replace("PODER", "")
+        /*pdf = pdf.replace("PODER", "")
                 .replace("JUDICIÁRIO", "")
                 .replace("ESTADO", "")
                 .replace("RIO", "")
@@ -33,7 +33,8 @@ public class Words {
                 //.replace("do", "")
                 .replace("Mérito", "")
                 .replace("Homologação", "")
-                .replace("Acordo", "");
+                .replace("Acordo", "");*/
+
 
 
         return pdf;

@@ -7,9 +7,9 @@ import org.apache.pdfbox.util.PDFTextStripper;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
+
 
 public class ReadPDFTable {
 
@@ -33,26 +33,21 @@ public class ReadPDFTable {
             pdDoc = new PDDocument(cosDoc);
             textoPdf = pdfStripper.getText(pdDoc);
 
+            List<String> map = ChamaLista.removePalavrasInuteis(Arrays.asList(CaracterEspecial.deleteCaracter(textoPdf).split(" ")));
 
-            //retirar palavras anteriores da tabela
-
-            //System.out.println(Words.removeWords(CaracterEspecial.deleteCaracter(textoPdf)));
-
-
-            System.out.println(CaracterEspecial.deleteCaracter(textoPdf));
-
+            System.out.println(map + CaracterEspecial.deleteCaracter(textoPdf));
 
         } catch (Exception e) {
             e.printStackTrace();
 
             System.out.println("Tente novamente!");
-
         }
 
         return null;
-    }
-}
 
+    }
+
+}
 
 
 
