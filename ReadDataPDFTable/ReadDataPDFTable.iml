@@ -15,6 +15,7 @@
     <orderEntry type="library" name="icu4j-4_2_1" level="project" />
     <orderEntry type="library" name="me-app" level="project" />
     <orderEntry type="library" name="me-applet" level="project" />
-    <orderEntry type="library" name="itextpdf-5.1.0" level="project" />
+    <orderEntry type="library" name="itextpdf-5.1.01" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>

@@ -1,8 +1,6 @@
 <component name="libraryTable">
   <library name="me-applet">
-    <CLASSES>
-      <root url="jar://$USER_HOME$/Downloads/libPDF/me-applet.jar!/" />
-    </CLASSES>
+    <CLASSES />
     <JAVADOC />
     <SOURCES />
   </library>
