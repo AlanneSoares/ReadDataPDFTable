@@ -59,7 +59,7 @@ public class ReadPDFTable {
 
         try {
 
-            PdfWriter.getInstance(document, new FileOutputStream("C://Users//alanne.soares//Documents//produtividade-juizes-mai-18.pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("C://Users//alanne.soares//Documents//arquivoTabelaAlterada.pdf"));
             document.open();
 
             // adicionando um parágrafo no documento
