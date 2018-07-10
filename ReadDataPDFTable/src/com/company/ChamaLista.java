@@ -5,9 +5,32 @@ import java.util.List;
 
 public class ChamaLista {
 
-    public static List<String> removePalavras(List<String> palavras) {
+    static List<String> removePalavrasInuteis(List<String> palavras) {
 
-        List<String> words = new ArrayList<>(palavras);
+        List<String> palavraSemPreposicao = new ArrayList<>(palavras);
+
+        for (String palavra : palavras) {
+
+            for (String preposicao : Palavras.REMOVER) {
+
+                if (palavra.equals(preposicao)) {
+
+                    palavraSemPreposicao.remove(palavra);
+
+                }
+            }
+        }
+
+        return palavraSemPreposicao;
+
+    }
+}
+
+    /*public static List<String> removePalavrasInuteis() {
+    }
+}*/
+
+        /*List<String> words = new ArrayList<>(palavras);
 
                 for (String otherWords : Palavras.REMOVER) {
 
@@ -16,7 +39,8 @@ public class ChamaLista {
                         words.remove(otherWords);
 
             }
-        }
-        return words;
-    }
-}
+        }*/
+
+        //return words;
+    //}
+//}

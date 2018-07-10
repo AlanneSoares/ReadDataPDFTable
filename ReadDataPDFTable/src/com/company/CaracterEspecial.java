@@ -16,8 +16,8 @@ public class CaracterEspecial {
                 .replace(":", "")
                 .replace("%", "")
                 .replace("'", "")
+                .replace("[", "")
                 .replace("  ", "")
-                .replaceAll("[0-9]", "")
                 .trim();
 
         return pdf;
