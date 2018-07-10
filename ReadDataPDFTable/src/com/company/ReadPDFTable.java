@@ -4,89 +4,68 @@ package com.company;
 
 
             link de referência
+
             https://www.devmedia.com.br/gerando-pdf-itext/18843
 
 
  */
-/*import org.apache.pdfbox.cos.COSDocument;
-import org.apache.pdfbox.pdfparser.PDFParser;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.util.PDFTextStripper;*/
-
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.*;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.*;
+import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 
 public class ReadPDFTable {
 
-    //public static String getText() {
+    public static final String RESULT = "C:/Users/alann/Documents/produtividade-juizes-mai-18.pdf";
 
-        /*PDFParser parser;
-        PDDocument pdDoc;
-        COSDocument cosDoc;
-        PDFTextStripper pdfStripper;*/
+    public static void main(String[] args) throws DocumentException, IOException {
 
-        //String textoPdf;
-        //String fileName = "C://Users//alanne.soares//Documents//produtividade-juizes-mai-18.pdf";
-        //String fileName = "C://Users//alann//Documents//produtividade-juizes-mai-18.pdf";
-        //File file = new File(fileName);
-
-        //try {
-
-            /*parser = new PDFParser(new FileInputStream(file));
-            parser.parse();
-            cosDoc = parser.getDocument();
-            pdfStripper = new PDFTextStripper();
-            pdDoc = new PDDocument(cosDoc);
-            textoPdf = pdfStripper.getText(pdDoc);*/
+        PdfReader pdfReader = new PdfReader(RESULT);
 
 
-            //retirar palavras anteriores da tabela
+        for (int i = 1; i < 1000; i++) {
 
-            //System.out.println(Words.removeWords(CaracterEspecial.deleteCaracter(textoPdf)));
+            //pegando pdf
+            String text = PdfTextExtractor.getTextFromPage(pdfReader, i);
 
+            /*List<String> lineOne = Collections.singletonList(text.replace("NomeRealizadasOutrasTerminativasJúriSentenças", ""));
+            List<String> lineTwo = Collections.singletonList(lineOne.toString().replace("PODER JUDICIÁRIO DO ESTADO DO RIO DE JANEIRO", ""));
+            List<String> lineThree = Collections.singletonList(lineTwo.toString().replace("Produtividade", ""));
+            List<String> lineFor = Collections.singletonList(lineThree.toString().replace("de", ""));
+            List<String> lineFive = Collections.singletonList(lineFor.toString().replace("Juízes -\t", ""));
+            List<String> lineSix = Collections.singletonList(lineFive.toString().replace("Maio", ""));
+            List<String> lineSeven = Collections.singletonList(lineSix.toString().replace("Nome", ""));
+            List<String> lineEigth = Collections.singletonList(lineSeven.toString().replace("Audiências", ""));
+            List<String> lineNine = Collections.singletonList(lineEigth.toString().replace("DGJUR - DEIGE", ""));
+            /*String deleteCaracterEspecialText = CaracterEspecial.deleteCaracter(text).replaceAll("\\s+", " ");
+            List<String> deleteWords = ChamaLista.removePalavras(Collections.singletonList(Arrays.asList(deleteCaracterEspecialText.split("\n")).toString().replaceAll("", "")));
+            String conteudo = deleteWords.toString();
+            System.out.println(conteudo);
+        }*/
+            /*String deleteCaracterEspecialText = CaracterEspecial.deleteCaracter(lineNine.toString());
+            String conteudo = deleteCaracterEspecialText;*/
+            //System.out.println(lineNine);
+        }
 
-           // System.out.println(CaracterEspecial.deleteCaracter(textoPdf));
+    /*private static String removePalavrasInuteis(String texto) {
 
+        String textoLimpo = null;
 
-        //} catch (Exception e) {
-          //  e.printStackTrace();
+        for (String deleteWords : Remove.Words) {
 
-           // System.out.println("Tente novamente!");
-
-      //  }
-
-       // return null;
-
-
-    //}
-//}
-
-
-    public static void main(String[] args) {
-
-    }// criação do documento
-    Document document = new Document();
-          try {
-
-        PdfWriter.getInstance(document, new FileOutputStream("C:\\PDF_DevMedia.pdf"));
-        document.open();
-
-        // adicionando um parágrafo no documento
-        document.add(new Paragraph("Gerando PDF - Java"));
+            if (texto.contains(deleteWords)) {
+                textoLimpo = texto.replaceAll(deleteWords, "");
+            }
+        }
+        return textoLimpo;
+    }*/
     }
-          catch(DocumentException de) {
-        System.err.println(de.getMessage());
-    }
-          catch(IOException ioe) {
-        System.err.println(ioe.getMessage());
-    }
-          document.close();
 }
-
-

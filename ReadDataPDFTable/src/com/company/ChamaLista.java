@@ -9,14 +9,10 @@ public class ChamaLista {
 
         List<String> words = new ArrayList<>(palavras);
 
-                for (String otherWords : Palavras.REMOVER) {
+        for (String removeWords : Remove.Words)
 
-                    if (otherWords.equals(palavras)) {
+            words.remove(removeWords);
 
-                        words.remove(otherWords);
-
-            }
-        }
         return words;
     }
 }
