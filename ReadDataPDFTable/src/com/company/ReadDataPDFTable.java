@@ -73,18 +73,6 @@ public class ReadDataPDFTable {
 
                 String palavra = map.get(i).replace("\n", "");
                 
-            for (int i = 0; i <= palavra.length(); i++) {
-
-
-                if (conteudo.contains() ==  {
-                    System.out.println("Possui 1 palavra" + i);
-                }
-                //System.out.println(conteudo);
-
-            }
-
-
-
         } catch (Exception e) {
 
             System.out.println("Tente novamente!");
