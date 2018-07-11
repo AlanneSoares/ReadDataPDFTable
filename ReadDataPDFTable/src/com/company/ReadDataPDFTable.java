@@ -30,7 +30,7 @@ public class ReadDataPDFTable {
             /*
 
             Uma forma melhor de extrair texto
-          
+
 
                 PdfReader arquivo = new PdfReader("Arquivo.pdf");
 
