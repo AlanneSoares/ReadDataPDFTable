@@ -1,6 +1,5 @@
 package com.company;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.apache.pdfbox.cos.COSDocument;
 import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -8,9 +7,7 @@ import org.apache.pdfbox.util.PDFTextStripper;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -34,49 +31,37 @@ public class ReadDataPDFTable {
             parser.parse();
             cosDoc = parser.getDocument();
             pdfStripper = new PDFTextStripper();
+            pdfStripper.setLineSeparator("\n");
             pdDoc = new PDDocument(cosDoc);
             text = pdfStripper.getText(pdDoc);
 
-            String conteudo = CaracterEspecial.deleteCaracter(Remove.numbers(text));
+            String[] linhas = text.split("\\r?\\n");
 
-            /*List<String> map = Arrays.asList(conteudo.split(" "));
+            for (int i = 0; i < linhas.length; i++) {
 
-            for (int i = 0; i < map.size(); i++) {
+                if (Character.isDigit(linhas[i].charAt(linhas[i].length() - 1))) {
 
-                String palavra = map.get(i).replace("\n", "");
+                    String removeCaracterEspecial = CaracterEspecial.deleteCaracter(linhas[i]).replaceAll("[0-9]", "");
+                    String removeNumbers = Remove.numbers(removeCaracterEspecial);
+                    String removePalavras = Words.removeWords(removeNumbers).replace("  ", "");
+                    String removeMes = Mes.deletePalavra(removePalavras.trim());
 
-                if (palavra.contains("JANEIRO")) {
+                    if (!removeMes.isEmpty()) {
 
-                    String p = palavra.replace("JANEIRO", "JANEIRO\n");
-                    System.out.println("Índice: " + i + " - Palavra: " + p);
+                        System.out.println(String.format("%d: %s", i + 1, removeMes));
+                    }
+
+
                 }
 
-                System.out.println();
-
-            }*/
-
+            }
+                pdDoc.close();
 
 
-            /*for (int i = 1; i < conteudo.length(); i++){
-                System.out.println(i);
-            }*/
-
-            //List<String> list = new ArrayList<String>(Arrays.asList(conteudo));
-
-            //int palavra1 = 1;
-
-            //int [] = new int[0];
-
-            List<String> map = Arrays.asList(conteudo.split(" "));
-
-            for (int i = 0; i < map.size(); i++) {
-
-                String palavra = map.get(i).replace("\n", "");
-                
         } catch (Exception e) {
 
             System.out.println("Tente novamente!");
         }
+
     }
 }
-
