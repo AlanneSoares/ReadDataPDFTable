@@ -27,6 +27,19 @@ public class ReadDataPDFTable {
 
         try {
 
+            /*
+
+            Uma forma melhor de extrair texto
+          
+
+                PdfReader arquivo = new PdfReader("Arquivo.pdf");
+
+                for (int i = 1; i < 1000; i++ {
+
+	            String texto = PdfTextExtractor.getTextFromPage(arquivo, i++);
+
+             */
+
             parser = new PDFParser(new FileInputStream(file));
             parser.parse();
             cosDoc = parser.getDocument();
