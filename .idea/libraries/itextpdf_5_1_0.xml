@@ -4,7 +4,9 @@
       <root url="file://$USER_HOME$/Downloads/Libraries/itextpdf-5.1.0.jar" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ideaLibSources/itextpdf-5.1.0-sources.jar!/" />
+    </SOURCES>
     <jarDirectory url="file://$USER_HOME$/Downloads/Libraries/itextpdf-5.1.0.jar" recursive="false" />
   </library>
 </component>

@@ -9,10 +9,11 @@ public class ChamaLista {
 
         List<String> words = new ArrayList<>(palavras);
 
-        for (String removeWords : Remove.Words)
+        for (String removeWords : Remove.Words) {
 
             words.remove(removeWords);
+        }
+            return words;
 
-        return words;
     }
 }

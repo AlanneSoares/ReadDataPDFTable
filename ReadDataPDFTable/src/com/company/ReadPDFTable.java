@@ -9,63 +9,111 @@ package com.company;
 
 
  */
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.*;
 
-import com.itextpdf.text.Document;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.*;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
+import org.apache.pdfbox.cos.COSDocument;
+import org.apache.pdfbox.pdfparser.PDFParser;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.util.PDFTextStripper;
 
 public class ReadPDFTable {
 
-    public static final String RESULT = "C:/Users/alann/Documents/produtividade-juizes-mai-18.pdf";
+    //public static final String RESULT = "C:/Users/alann/Documents/produtividade-juizes-mai-18.pdf";
 
-    public static void main(String[] args) throws DocumentException, IOException {
+    public static void main(String[] args) throws IOException {
 
-        PdfReader pdfReader = new PdfReader(RESULT);
+        PDFParser parser;
+        PDDocument pdDoc;
+        COSDocument cosDoc;
+        PDFTextStripper pdfStripper;
 
+        String text = null;
+        String fileName;
+        File file;
 
-        for (int i = 1; i < 1000; i++) {
+        fileName = "C:/Users/alann/Documents/produtividade-juizes-mai-18.pdf";
+        file = new File(fileName);
 
-            //pegando pdf
-            String text = PdfTextExtractor.getTextFromPage(pdfReader, i);
+        try {
 
-            /*List<String> lineOne = Collections.singletonList(text.replace("NomeRealizadasOutrasTerminativasJúriSentenças", ""));
-            List<String> lineTwo = Collections.singletonList(lineOne.toString().replace("PODER JUDICIÁRIO DO ESTADO DO RIO DE JANEIRO", ""));
-            List<String> lineThree = Collections.singletonList(lineTwo.toString().replace("Produtividade", ""));
-            List<String> lineFor = Collections.singletonList(lineThree.toString().replace("de", ""));
-            List<String> lineFive = Collections.singletonList(lineFor.toString().replace("Juízes -\t", ""));
-            List<String> lineSix = Collections.singletonList(lineFive.toString().replace("Maio", ""));
-            List<String> lineSeven = Collections.singletonList(lineSix.toString().replace("Nome", ""));
-            List<String> lineEigth = Collections.singletonList(lineSeven.toString().replace("Audiências", ""));
-            List<String> lineNine = Collections.singletonList(lineEigth.toString().replace("DGJUR - DEIGE", ""));
-            /*String deleteCaracterEspecialText = CaracterEspecial.deleteCaracter(text).replaceAll("\\s+", " ");
-            List<String> deleteWords = ChamaLista.removePalavras(Collections.singletonList(Arrays.asList(deleteCaracterEspecialText.split("\n")).toString().replaceAll("", "")));
-            String conteudo = deleteWords.toString();
-            System.out.println(conteudo);
-        }*/
-            /*String deleteCaracterEspecialText = CaracterEspecial.deleteCaracter(lineNine.toString());
-            String conteudo = deleteCaracterEspecialText;*/
-            //System.out.println(lineNine);
-        }
+            parser = new PDFParser(new FileInputStream(file));
+            parser.parse();
+            cosDoc = parser.getDocument();
+            pdfStripper = new PDFTextStripper();
+            pdfStripper.setLineSeparator("\n");
 
-    /*private static String removePalavrasInuteis(String texto) {
+            pdDoc = new PDDocument(cosDoc);
+//            pdfStripper.getText();setStartPage(Integer.parseInt(text));
+  //          pdfStripper.setEndPage(Integer.parseInt(text));
+            text = pdfStripper.getText(pdDoc);
 
-        String textoLimpo = null;
+            String[] linhas = text.split("\\r?\\n");
 
-        for (String deleteWords : Remove.Words) {
+            for (int i = 0; i < linhas.length; i++) {
 
-            if (texto.contains(deleteWords)) {
-                textoLimpo = texto.replaceAll(deleteWords, "");
+                //String palavras = String.valueOf(linhas.equals(ChamaLista.removePalavras(Arrays.asList(text))));
+                List<String> palavras = ChamaLista.removePalavras(Arrays.asList(linhas));
+                System.out.println(String.format("%d: %s", i + 1, palavras));
+
             }
+                /*if (linhas.equals(ChamaLista.removePalavras(Arrays.asList(text)))) {
+                    List<String> map = ChamaLista.removePalavras(Arrays.asList(CaracterEspecial.deleteCaracter(text).split(" ")));
+
+
+                    for (int j = 0; j < map.size(); j++) {
+                        if (map.contains(linhas)) {
+
+                            map.remove(i);
+                            //System.out.println(linhas);
+
+                        }
+                    }
+
+                }*/
+
+
+                pdDoc.close();
+            /*PdfReader pdfReader = new PdfReader("C:/Users/alann/Documents/produtividade-juizes-mai-18.pdf");
+
+            for (int i = 1; i < pdfReader.hashCode(); i++) {
+
+                //pegando pdf por página
+                String text = PdfTextExtractor.getTextFromPage(pdfReader, i);
+                System.out.println(text + "\n\n=========== Página: " + i + " =======================" + "\n");
+            }*/
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return textoLimpo;
-    }*/
+
+       // List<String> map = ChamaLista.removePalavras(Arrays.asList(CaracterEspecial.deleteCaracter(text).split(" ")));
+
+        //for (int i = 0; i < map.size(); i++) {
+
+            //int array[] = new int[0];
+
+            //for (int j = 0; j <= array.length; j++) {
+
+
+                //String palavra = map.get(i);
+                //String q = "\r\n";
+
+                //if (palavra.contains(q)) {
+
+                   // map.remove(i);
+                    //System.out.println(palavra);
+
+               // }
+           // }
+        }
     }
-}
+
