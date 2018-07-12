@@ -32,17 +32,18 @@ public class ReadDataPDFTable {
             text = pdfStripper.getText(pdDoc);
             linhas = text.split("\\r?\\n");
 
-            for (int j = 0; j < linhas.length; j++) {
+            for (int i = 0; i < linhas.length;i++) {
 
-                if (Character.isDigit(linhas[j].charAt(linhas[j].length() - 1))) {
+                if (Character.isDigit(linhas[i].charAt(linhas[i].length() - 1))) {
 
-                    String conteudo = Remove.words(Remove.months(Remove.numbers(Remove.specialCharacteres(linhas[j]))));
+                    String conteudo = Remove.words(Remove.months(Remove.numbers(Remove.specialCharacteres(linhas[i]))));
 
                     if (!conteudo.trim().equals("")) {
                         System.out.println(String.format(conteudo));
                     }
                 }
             }
+
         } catch (Exception e) {
             System.out.println("Tente novamente!");
         }
