@@ -26,18 +26,13 @@ public class ReadDataPDFTable {
 
 
         try {
-
             /*
-
             Uma forma melhor de extrair texto
 
-
-                PdfReader arquivo = new PdfReader("Arquivo.pdf");
-
+            PdfReader arquivo = new PdfReader("Arquivo.pdf");
                 for (int i = 1; i < 1000; i++ {
-
-	            String texto = PdfTextExtractor.getTextFromPage(arquivo, i++);
-
+                    String texto = PdfTextExtractor.getTextFromPage(arquivo, i++);
+                }
              */
 
             parser = new PDFParser(new FileInputStream(file));
@@ -63,18 +58,13 @@ public class ReadDataPDFTable {
 
                         System.out.println(String.format("%d: %s", i + 1, removeMes));
                     }
-
-
                 }
-
             }
-                pdDoc.close();
 
+            pdDoc.close();
 
         } catch (Exception e) {
-
             System.out.println("Tente novamente!");
         }
-
     }
 }
