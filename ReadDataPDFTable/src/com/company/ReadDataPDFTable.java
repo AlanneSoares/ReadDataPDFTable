@@ -55,7 +55,6 @@ public class ReadDataPDFTable {
                     String removeMes = Mes.deletePalavra(removePalavras.trim());
 
                     if (!removeMes.isEmpty()) {
-
                         System.out.println(String.format("%d: %s", i + 1, removeMes));
                     }
                 }
