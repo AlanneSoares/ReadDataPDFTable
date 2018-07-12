@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="libPDF">
+    <CLASSES>
+      <root url="file://$USER_HOME$/Downloads/libPDF" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$USER_HOME$/Downloads/libPDF" recursive="false" />
+  </library>
+</component>
