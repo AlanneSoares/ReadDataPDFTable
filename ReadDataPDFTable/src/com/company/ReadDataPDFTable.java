@@ -20,7 +20,7 @@ public class ReadDataPDFTable {
         COSDocument cosDoc;
         PDFTextStripper pdfStripper;
 
-        String text = null;
+        String text;
         String fileName = "c:/users/alanne.soares/documents/produtividade-juizes-mai-18.pdf";
         File file = new File(fileName);
 
