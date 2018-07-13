@@ -1,63 +1,54 @@
 package com.company;
-/*
-erro encontrado:
 
-PdfReader reader = new PdfReader("c:/users/alann/documents/produtividade-juizes-mai-18.pdf");
-        String page = PdfTextExtractor.getTextFromPage(reader, 24);
-        System.out.println(page);
+// Ler pdf com iText
 
-        deverá mudar a API para iText, pois receberá todos os dados
- */
 import java.io.*;
-
-import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.parser.PdfTextExtractor;
-import org.apache.pdfbox.cos.*;
-import org.apache.pdfbox.pdfparser.*;
-import org.apache.pdfbox.pdmodel.*;
-import org.apache.pdfbox.util.*;
+import java.util.*;
+import com.itextpdf.text.pdf.*;
+import com.itextpdf.text.pdf.parser.*;
 
 public class ReadDataPDFTable {
 
     public static void getText() throws IOException {
 
-        PDFParser parser;
-        PDDocument pdDoc;
-        COSDocument cosDoc;
-        PDFTextStripper pdfStripper;
-        String text;
-        String fileName;
-        String[] linhas;
-        File file;
+        String file;
+        String pages;
 
-        //fileName = "c:/users/alanne.soares/documents/produtividade-juizes-mai-18.pdf";
-        fileName = "c:/users/alann/documents/produtividade-juizes-mai-18.pdf";
-        file = new File(fileName);
+        List<String> linhas;
+
+        int i;
+        int j;
+
+        //file = "c:/users/alanne.soares/documents/produtividade-juizes-mai-18.pdf";
+        file = "c:/users/alann/documents/produtividade-juizes-mai-18.pdf";
+
+        PdfReader reader = new PdfReader(file);
 
         try {
-            parser = new PDFParser(new FileInputStream(file));
-            parser.parse();
-            cosDoc = parser.getDocument();
-            pdfStripper = new PDFTextStripper();
-            pdDoc = new PDDocument(cosDoc);
-            text = pdfStripper.getText(pdDoc);
-            linhas = text.split("\\r?\\n");
 
+            for (i = 1; i < 1000; i++) {
 
-            for (int i = 0; i < linhas.length;i++) {
+                pages = PdfTextExtractor.getTextFromPage(reader, i);
+                //linhas = Arrays.asList(pages.split("\n"));
 
-                if (Character.isDigit(linhas[i].charAt(linhas[i].length() - 1))) {
+                //for (j = 0; j < linhas.get(j).length(); j++) {
 
-                    String conteudo = Remove.words(Remove.months(Remove.numbers(Remove.specialCharacteres(linhas[i]))));
-
-                    if (!conteudo.trim().equals("")) {
-                        System.out.println(String.format(conteudo));
+                    //String conteudo = Remove.words(Remove.months(Remove.numbers(Remove.specialCharacteres(linhas.get(i)))));
+                    String conteudo = Remove.words(Remove.months(Remove.numbers(Remove.specialCharacteres(pages))));
+                    if (conteudo.equals(1)) {
+                        conteudo.substring(1, 0);
+                    }
+                    if (!conteudo.isEmpty()) {
+                        System.out.println(conteudo);
                     }
                 }
-            }
+            //}
+        }
 
-        } catch (Exception e) {
+        catch (Exception e) {
+
             System.out.println("Tente novamente!");
+
         }
     }
 }

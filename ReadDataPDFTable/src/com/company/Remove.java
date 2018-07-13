@@ -42,10 +42,7 @@ public class Remove {
                 .replace("%", "")
                 .replace("'", "")
                 .replace("[", "")
-                .replace("  ", "")
-                .replace("´", "")
-                .replace("!", "")
-                .replace("^", "");
+                .replace("  ", "");
 
         return pdf;
     }
@@ -55,7 +52,31 @@ public class Remove {
         pdf = pdf
                 .replace("Produtividade", "")
                 .replace("de", "")
-                .replace("Juízes", "");
+                .replace("Juízes", "")
+                .replace("Audiências", "")
+                .replace("Processos", "")
+                .replace("Conclusões", "")
+                .replace("Acordo", "")
+                .replace("Depoimentos", "")
+                .replace("Conclusões", "")
+                .replace("Despachos", "")
+                .replace("sem", "")
+                .replace("com", "")
+                .replace("Mérito", "")
+                .replace("PODER JUDICIÁRIO DO ESTADO DO RIO DE JANEIRO", "")
+                .replace("DGJUR DEIGE", "")
+                .replace("Nome", "")
+                .replace("Realizadas", "")
+                .replace("Sentenças", "")
+                .replace("Méritos", "")
+                .replace("Homologação", "")
+                .replace("Outras", "")
+                .replace("Decisões", "")
+                .replace("Terminativas", "")
+                .replace("Júri", "")
+                .replace("Decididos", "")
+                .trim()
+                .replace("\\s", "");
 
             return pdf;
     }
