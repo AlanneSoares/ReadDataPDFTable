@@ -39,8 +39,8 @@ public class ReadDataPDFTable {
         String username;
         String password;
 
-        fileName = "c:/users/alanne.soares/documents/produtividade-juizes-mai-18.pdf";
-        //fileName = "c:/users/alann/documents/produtividade-juizes-mai-18.pdf";
+        //fileName = "c:/users/alanne.soares/documents/produtividade-juizes-mai-18.pdf";
+        fileName = "c:/users/alann/documents/produtividade-juizes-mai-18.pdf";
         file = new File(fileName);
 
         PdfReader reader = new PdfReader(String.valueOf(file));
