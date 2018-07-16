@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Spliterator;
+
 public class Remove {
 
     public static String numbers(String pdf) {
@@ -55,7 +57,34 @@ public class Remove {
         pdf = pdf
                 .replace("Produtividade", "")
                 .replace("de", "")
-                .replace("Juízes", "");
+                .replace("Juízes", "")
+                .replace("Nome", "")
+                .replace("Realizadas", "")
+                .replace("Outras", "")
+                .replace("Terminativas", "")
+                .replace("Júri", "")
+                .replace("Sentenças", "")
+                .replace("PODER", "")
+                .replace("JUDICIÁRIO", "")
+                .replace("DO", "")
+                .replace("ESTADO", "")
+                .replace("RIO", "")
+                .replace("DE", "")
+                .replace("JANEIRO", "")
+                .replace("DGJUR DEIGE", "")
+                .replace("Audiências", "")
+                .replace("Decisões", "")
+                .replace("Processo", "")
+                .replace("Conclusões", "")
+                .replace("Depoimentos", "")
+                .replace("Despachos", "")
+                .replace("Homologação", "")
+                .replace("Decididos", "")
+                .replace("Méritos", "")
+                .replace("Acordo", "")
+                .replace("sem", "")
+                .replace("com", "")
+                ;
 
             return pdf;
     }

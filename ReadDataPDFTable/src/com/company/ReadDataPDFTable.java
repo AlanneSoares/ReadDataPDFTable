@@ -10,7 +10,7 @@ import com.itextpdf.text.pdf.parser.*;
 
 public class ReadDataPDFTable {
 
-    public static void getText() throws IOException {
+    public static void getText() throws IOException, SQLException, ClassNotFoundException {
 
         String file;
         String pages;
@@ -22,54 +22,41 @@ public class ReadDataPDFTable {
         List<String> linhas;
 
         int i;
-        //int j;
 
         file = "c:/users/alanne.soares/documents/produtividade-juizes-mai-18.pdf";
         //file = "c:/users/alann/documents/produtividade-juizes-mai-18.pdf";
 
         PdfReader reader = new PdfReader(file);
 
-        try {
+        String atualizaMagistrado = "{ CALL tjrj.tjrj_pa_portal.pr_atualiza_magistrado(?) }";
+        driver = "oracle.jdbc.driver.OracleDriver";
+        url = "jdbc:oracle:thin:@(DESCRIPTION=(LOAD_BALANCE=on)(ADDRESS = (PROTOCOL=TCP)(HOST=exa-scan.pgj.rj.gov.br)(PORT=1521))(CONNECT_DATA = (SERVICE_NAME=CORR)))";
+        username = "TJRJ_WEBSERVICE_CON";
+        password = "TJRJ_WEBSERVICE_CON";
 
-            /*for (i = 1; i < 1000; i++) {
+        Connection con = DriverManager.getConnection(url, username, password);
+        PreparedStatement ps = con.prepareStatement(atualizaMagistrado);
+        Class.forName(driver);
 
-                pages = PdfTextExtractor.getTextFromPage(reader, i);
-                linhas = Arrays.asList(pages);//.split("\n"));
+        for (i = 1; i < 1000; i++) {
 
-                //for (j = 0; j < linhas.get(j).length(); j++) {
+            pages = PdfTextExtractor.getTextFromPage(reader, i);
+            linhas = Arrays.asList(pages.replace("\n", ""));
 
-                    //String conteudo = Remove.words(Remove.months(Remove.numbers(Remove.specialCharacteres(linhas.get(i)))));
-                    String conteudo = Remove.words(Remove.months(Remove.numbers(Remove.specialCharacteres(linhas.toString().trim()))));
-*/
-            String atualizaMagistrado = "{ CALL tjrj.tjrj_pa_portal.pr_atualiza_magistrado(?) }";
-            driver = "oracle.jdbc.driver.OracleDriver";
-            url = "jdbc:oracle:thin:@(DESCRIPTION=(LOAD_BALANCE=on)(ADDRESS = (PROTOCOL=TCP)(HOST=exa-scan.pgj.rj.gov.br)(PORT=1521))(CONNECT_DATA = (SERVICE_NAME=CORR)))";
-            username = "TJRJ_WEBSERVICE_CON";
-            password = "TJRJ_WEBSERVICE_CON";
+            String conteudo = Remove.words(Remove.months(Remove.numbers(Remove.specialCharacteres(linhas.toString().replaceAll("\\s+", " ")))));
+            String vazio = "";
 
-            Class.forName(driver);
+            if (conteudo.toString() == vazio) {
 
-            Connection connection = DriverManager.getConnection(url, username, password);
+                //for (int j = 1; j < conteudo.length(); j++) {
 
-            PreparedStatement ps = connection.prepareStatement(atualizaMagistrado);
-            //ResultSet rs = atualizaMagistrado.executeQuery();
+                    System.out.println(conteudo);
 
-            System.out.println("Conectado!");
+                }
 
-                    /*if (!conteudo.isEmpty()) {
-                        if (conteudo.equals("\n")){
+                ps.setString(1, conteudo);
+                ps.execute();
 
-                            System.out.println(conteudo.replace("\n", ""));
-
-                        }
-
-                    }*/
-
-
-        } catch (ClassNotFoundException e1) {
-            e1.printStackTrace();
-        } catch (SQLException e1) {
-            e1.printStackTrace();
+            }
         }
     }
-}
