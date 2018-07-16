@@ -48,7 +48,7 @@ public class ReadDataPDFTable {
 
             if (conteudo.toString() == vazio) {
 
-                //for (int j = 1; j < conteudo.length(); j++) {
+                for (int j = 1; j < conteudo.length(); j++) {
 
                     System.out.println(conteudo);
 
@@ -60,3 +60,4 @@ public class ReadDataPDFTable {
             }
         }
     }
+}
