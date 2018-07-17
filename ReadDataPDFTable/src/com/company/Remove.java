@@ -55,15 +55,6 @@ public class Remove {
     public static String words(String pdf) {
 
         pdf = pdf
-                .replace("Produtividade", "")
-                .replace("de", "")
-                .replace("Juízes", "")
-                .replace("Nome", "")
-                .replace("Realizadas", "")
-                .replace("Outras", "")
-                .replace("Terminativas", "")
-                .replace("Júri", "")
-                .replace("Sentenças", "")
                 .replace("PODER", "")
                 .replace("JUDICIÁRIO", "")
                 .replace("DO", "")
@@ -72,19 +63,27 @@ public class Remove {
                 .replace("DE", "")
                 .replace("JANEIRO", "")
                 .replace("DGJUR DEIGE", "")
+                .replace("Nome", "")
                 .replace("Audiências", "")
-                .replace("Decisões", "")
-                .replace("Processo", "")
+                .replace("Realizadas", "")
                 .replace("Conclusões", "")
+                .replace("Decisões", "")
+                .replace("Outras", "")
+                .replace("Terminativas", "")
                 .replace("Depoimentos", "")
                 .replace("Despachos", "")
-                .replace("Homologação", "")
+                .replace("Júri", "")
+                .replace("Processos", "")
                 .replace("Decididos", "")
-                .replace("Méritos", "")
-                .replace("Acordo", "")
+                .replace("Sentenças", "")
                 .replace("sem", "")
                 .replace("com", "")
-                ;
+                .replace("de", "")
+                .replace("Mérito", "")
+                .replace("Homologação", "")
+                .replace("Acordo", "")
+                .replace("Produtividade", "")
+                .replace("Juízes", "");
 
             return pdf;
     }
