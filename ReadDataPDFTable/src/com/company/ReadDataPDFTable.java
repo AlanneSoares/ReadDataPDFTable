@@ -2,6 +2,8 @@ package com.company;
 
 // Ler pdf com iText
 
+// Está retirando das palavras "de", no qual não deveria
+
 import java.io.*;
 import java.sql.*;
 import java.util.*;
@@ -20,8 +22,6 @@ public class ReadDataPDFTable {
         String username;
         String password;
 
-        List<String> linhas = new ArrayList();
-
         int i;
 
         file = "c:/users/alanne.soares/documents/produtividade-juizes-mai-18.pdf";
@@ -37,18 +37,31 @@ public class ReadDataPDFTable {
 
         Connection con = DriverManager.getConnection(url, username, password);
         PreparedStatement ps = con.prepareStatement(atualizaMagistrado);
+
         Class.forName(driver);
 
-        for (i = 1; i < reader.getNumberOfPages(); i++) {
+        for (i = 1; i < 100; i++) {
 
-            pages = PdfTextExtractor.getTextFromPage(reader, i + 1);
-            conteudo = Remove.words(pages.replace("\n", ""));//(Remove.months(Remove.numbers(Remove.specialCharacteres(pages))));
+            pages = PdfTextExtractor.getTextFromPage(reader, i);
 
-            String removeNumero = Remove.numbers(Remove.specialCharacteres(conteudo));
+            conteudo = Remove.words(Remove.months(Remove.numbers(Remove.specialCharacteres(pages))));
 
-                System.out.println(trimAll(removeNumero) + "\npágina " + i + "\n");
+            if (conteudo.contains(" ")) {
+
+                String texto = conteudo.replace("\n", ",");
+                //String espacos = texto.;
+                System.out.println(trimAll(texto));
+            }
+        }
+
+
+
+            //String removeNumero = Remove.numbers(Remove.specialCharacteres(conteudo));
+
+                //System.out.println(trimAll(conteudo) + "\npágina " + i + "\n");
 
             }
+
 
             //for (i = 0; i < )
             //linhas.add(pages.replaceAll("\n", ""));
@@ -85,13 +98,19 @@ public class ReadDataPDFTable {
             //ps.setString(1, conteudo);
             //ps.execute();
 
-        }
+
 
 
     public static String trimAll(String text){
+
         String string = text.trim();
+
         while (string.contains("  ")) {
-            string = string.replaceAll("  ", " ");
+
+                string = string.replaceAll("  ", "");
+                //string = string.replaceAll("\\s+$", "");
+                //String texto_filtrado = str.replaceAll("\\s+$", "");
+
         }
         return string;
     }

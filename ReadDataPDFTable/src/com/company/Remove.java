@@ -13,18 +13,18 @@ public class Remove {
 
     public static String months(String pdf) {
 
-        pdf = pdf.replace("Janeiro", "")
-                .replace("Fevereiro", "")
-                .replace("Março", "")
-                .replace("Abril", "")
-                .replace("Maio", "")
-                .replace("Junho", "")
-                .replace("Julho", "")
-                .replace("Agosto", "")
-                .replace("Setembro", "")
-                .replace("Outubro", "")
-                .replace("Novembro", "")
-                .replace("Dezembro", "");
+        pdf = pdf.replace("Janeiro de", "")
+                .replace("Fevereiro de", "")
+                .replace("Março de", "")
+                .replace("Abril de", "")
+                .replace("Maio de", "")
+                .replace("Junho de", "")
+                .replace("Julho de", "")
+                .replace("Agosto de", "")
+                .replace("Setembro de", "")
+                .replace("Outubro de", "")
+                .replace("Novembro de", "")
+                .replace("Dezembro de", "");
 
         return pdf;
     }
@@ -42,12 +42,7 @@ public class Remove {
                 .replace("-", " ")
                 .replace(":", "")
                 .replace("%", "")
-                .replace("'", "")
-                .replace("[", "")
-                .replace("  ", "")
-                .replace("´", "")
-                .replace("!", "")
-                .replace("^", "");
+                .replace("'", "");
 
         return pdf;
     }
