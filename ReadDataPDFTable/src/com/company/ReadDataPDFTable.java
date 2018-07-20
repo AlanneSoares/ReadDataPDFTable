@@ -51,24 +51,29 @@ public class ReadDataPDFTable {
 
                 for (int i = 0; i < row.length; i++) {
 
-                    if (row[i].contains("\n")){
+                    if (row[i].contains("\n")) {
                         String deleteLineBreak = row[i].replaceAll("\n", " ");
                         String deleteNumbers = Remove.numbers(deleteLineBreak);
                         String deleteWords = Remove.words(deleteNumbers);
                         String deleteSpecialCharacter = Remove.specialCharacteres(deleteWords);
                         conteudo = deleteSpecialCharacter;
 
+                        String[] novoConteudo = conteudo.split(",");
+                        for (int j = 0; j < novoConteudo.length; i++) {
 
-                            System.out.println((!row[i].equals(LetraJunta.letraJunta(trimAll(conteudo)))));
+                            if (novoConteudo.toString().contains("aA")) {
+                                System.out.println("Encontrado!");
 
 
-                    } else {
-                        System.out.println("Erro");
+                            } else {
+                                System.out.println("Erro");
+                            }
+
+                            //ps.setString(1, conteudo);
+                            //ps.execute();
+                        }
                     }
-
-                //ps.setString(1, conteudo);
-                //ps.execute();
-            }
+                }
         }
     }
 
