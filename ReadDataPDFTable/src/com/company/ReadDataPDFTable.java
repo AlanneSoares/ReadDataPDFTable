@@ -1,7 +1,6 @@
 package com.company;
 
 // Ler pdf com iText
-
 // Está retirando das palavras "de", no qual não deveria
 
 import java.io.*;
@@ -22,84 +21,56 @@ public class ReadDataPDFTable {
         String username;
         String password;
 
-        int i;
+        int page;
 
-        file = "c:/users/alanne.soares/documents/produtividade-juizes-mai-18.pdf";
-        //file = "c:/users/alann/documents/produtividade-juizes-mai-18.pdf";
+
+        //file = "c:/users/alanne.soares/documents/produtividade-juizes-mai-18.pdf";
+        file = "c:/users/alann/documents/produtividade-juizes-mai-18.pdf";
 
         PdfReader reader = new PdfReader(file);
 
-        String atualizaMagistrado = "{ CALL tjrj.tjrj_pa_portal.pr_atualiza_magistrado(?) }";
-        driver = "oracle.jdbc.driver.OracleDriver";
-        url = "jdbc:oracle:thin:@(DESCRIPTION=(LOAD_BALANCE=on)(ADDRESS = (PROTOCOL=TCP)(HOST=exa-scan.pgj.rj.gov.br)(PORT=1521))(CONNECT_DATA = (SERVICE_NAME=CORR)))";
-        username = "TJRJ_WEBSERVICE_CON";
-        password = "TJRJ_WEBSERVICE_CON";
+//        String atualizaMagistrado = "{ CALL tjrj.tjrj_pa_portal.pr_atualiza_magistrado(?) }";
+//        driver = "oracle.jdbc.driver.OracleDriver";
+//        url = "jdbc:oracle:thin:@(DESCRIPTION=(LOAD_BALANCE=on)(ADDRESS = (PROTOCOL=TCP)(HOST=exa-scan.pgj.rj.gov.br)(PORT=1521))(CONNECT_DATA = (SERVICE_NAME=CORR)))";
+//        username = "TJRJ_WEBSERVICE_CON";
+//        password = "TJRJ_WEBSERVICE_CON";
 
-        Connection con = DriverManager.getConnection(url, username, password);
-        PreparedStatement ps = con.prepareStatement(atualizaMagistrado);
+//        Connection con = DriverManager.getConnection(url, username, password);
+//        PreparedStatement ps = con.prepareStatement(atualizaMagistrado);
 
-        Class.forName(driver);
+//        Class.forName(driver);
 
-        for (i = 1; i < 100; i++) {
+        // contando páginas
+        for (page = 1; page < 100; page++) {
 
-            pages = PdfTextExtractor.getTextFromPage(reader, i);
+            //lendo texto de cada página
+            pages = PdfTextExtractor.getTextFromPage(reader, page);
 
-            conteudo = Remove.words(Remove.months(Remove.numbers(Remove.specialCharacteres(pages))));
+                //transformando conteúdo de linha em array
+                String[] row = pages.split(",");//, -1);
 
-            if (conteudo.contains(" ")) {
+                for (int i = 0; i < row.length; i++) {
 
-                String texto = conteudo.replace("\n", ",");
-                //String espacos = texto.;
-                System.out.println(trimAll(texto));
+                    if (row[i].contains("\n")){
+                        String deleteLineBreak = row[i].replaceAll("\n", " ");
+                        String deleteNumbers = Remove.numbers(deleteLineBreak);
+                        String deleteWords = Remove.words(deleteNumbers);
+                        String deleteSpecialCharacter = Remove.specialCharacteres(deleteWords);
+                        conteudo = deleteSpecialCharacter;
+
+
+                            System.out.println((!row[i].equals(LetraJunta.letraJunta(trimAll(conteudo)))));
+
+
+                    } else {
+                        System.out.println("Erro");
+                    }
+
+                //ps.setString(1, conteudo);
+                //ps.execute();
             }
         }
-
-
-
-            //String removeNumero = Remove.numbers(Remove.specialCharacteres(conteudo));
-
-                //System.out.println(trimAll(conteudo) + "\npágina " + i + "\n");
-
-            }
-
-
-            //for (i = 0; i < )
-            //linhas.add(pages.replaceAll("\n", ""));
-
-
-            //String conteudo = null;
-
-            //for(i = 0; i < linhas.size(); i++){
-
-            //  System.out.println(conteudo += Remove.words(Remove.months(Remove.numbers(Remove.specialCharacteres(linhas.get(i))))));
-
-            //}
-
-
-            //String nome = trimAll(conteudo);
-
-            //if (!nome.isEmpty()) {
-
-            //  System.out.println(nome);
-
-            //}
-        /*String[] nomesArray = nome.split("  ");
-
-        List<String> nomes =  Arrays.asList(nomesArray);
-
-        List<String> nomesLimpos = new ArrayList<>();
-        for (String nomeLimpo : nomes) {
-            if(!nomeLimpo.equals("")){
-                nomesLimpos.add(nomeLimpo);
-            }
-        }*/
-
-
-            //ps.setString(1, conteudo);
-            //ps.execute();
-
-
-
+    }
 
     public static String trimAll(String text){
 
@@ -114,4 +85,7 @@ public class ReadDataPDFTable {
         }
         return string;
     }
+
+
+
 }

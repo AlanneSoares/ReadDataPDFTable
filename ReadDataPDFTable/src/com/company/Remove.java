@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Spliterator;
 
 public class Remove {
@@ -50,13 +52,7 @@ public class Remove {
     public static String words(String pdf) {
 
         pdf = pdf
-                .replace("PODER", "")
-                .replace("JUDICIÁRIO", "")
-                .replace("DO", "")
-                .replace("ESTADO", "")
-                .replace("RIO", "")
-                .replace("DE", "")
-                .replace("JANEIRO", "")
+                .replace("PODER JUDICIÁRIO DO ESTADO DO RIO DE JANEIRO", " ")
                 .replace("DGJUR DEIGE", "")
                 .replace("Nome", "")
                 .replace("Audiências", "")
@@ -81,5 +77,18 @@ public class Remove {
                 .replace("Juízes", "");
 
             return pdf;
+    }
+
+    public static List<String> lista(String palavra) {
+
+        List<String> palavras = new ArrayList<>();
+
+        for (String p : palavras) {
+            if (p.equals("")){
+                palavras.remove(p);
+            }
+        }
+
+        return null;
     }
 }
