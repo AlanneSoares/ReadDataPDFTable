@@ -2,7 +2,6 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Spliterator;
 
 public class Remove {
 
@@ -15,18 +14,18 @@ public class Remove {
 
     public static String months(String pdf) {
 
-        pdf = pdf.replace("Janeiro de", "")
-                .replace("Fevereiro de", "")
-                .replace("Março de", "")
-                .replace("Abril de", "")
-                .replace("Maio de", "")
-                .replace("Junho de", "")
-                .replace("Julho de", "")
-                .replace("Agosto de", "")
-                .replace("Setembro de", "")
-                .replace("Outubro de", "")
-                .replace("Novembro de", "")
-                .replace("Dezembro de", "");
+        pdf = pdf.replace("Janeiro", "")
+                .replace("Fevereiro", "")
+                .replace("Março", "")
+                .replace("Abril", "")
+                .replace("Maio", "")
+                .replace("Junho", "")
+                .replace("Julho", "")
+                .replace("Agosto", "")
+                .replace("Setembro", "")
+                .replace("Outubro", "")
+                .replace("Novembro", "")
+                .replace("Dezembro", "");
 
         return pdf;
     }
@@ -52,8 +51,8 @@ public class Remove {
     public static String words(String pdf) {
 
         pdf = pdf
-                .replace("PODER JUDICIÁRIO DO ESTADO DO RIO DE JANEIRO", " ")
-                .replace("DGJUR DEIGE", "")
+                .replace("PODER JUDICIÁRIO DO ESTADO DO RIO DE JANEIRO", "")
+                .replace("DGJUR - DEIGE", "")
                 .replace("Nome", "")
                 .replace("Audiências", "")
                 .replace("Realizadas", "")
@@ -67,28 +66,54 @@ public class Remove {
                 .replace("Processos", "")
                 .replace("Decididos", "")
                 .replace("Sentenças", "")
+                .replace("Produtividade", "")
                 .replace("sem", "")
                 .replace("com", "")
                 .replace("de", "")
                 .replace("Mérito", "")
                 .replace("Homologação", "")
                 .replace("Acordo", "")
-                .replace("Produtividade", "")
                 .replace("Juízes", "");
 
             return pdf;
     }
 
-    public static List<String> lista(String palavra) {
+    public static String deleteSpaceBreak(String pdf) {
 
-        List<String> palavras = new ArrayList<>();
+        pdf = pdf.replace(" \n", "\n");
 
-        for (String p : palavras) {
-            if (p.equals("")){
-                palavras.remove(p);
-            }
+        return pdf;
+    }
+
+    public static String deleteBreak(String pdf) {
+
+        pdf = pdf.replace("\n", "-");
+        String caracter = "-";
+        for (int i = 0; i < 10; i--) {
+            //if (pdf.contains(caracter) && caracter.length() <= 0) {
+            //pdf.replaceAll(caracter, "\n");
+
         }
+            return pdf;
+    }
 
-        return null;
+    public static String deleteLetters(String pdf) {
+
+        pdf = pdf.replace("aA", "a A\n");
+
+        return pdf;
+    }
+
+
+    public static String deleteSpaces(String pdf){
+
+        pdf = pdf.trim();
+
+        while (pdf.contains("  ")) {
+
+            pdf = pdf.replaceAll("  ", "");
+
+        }
+        return pdf;
     }
 }

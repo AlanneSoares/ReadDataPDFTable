@@ -5,7 +5,6 @@ package com.company;
 
 import java.io.*;
 import java.sql.*;
-import java.util.*;
 import com.itextpdf.text.pdf.*;
 import com.itextpdf.text.pdf.parser.*;
 
@@ -40,57 +39,55 @@ public class ReadDataPDFTable {
 
 //        Class.forName(driver);
 
-        // contando páginas
-        for (page = 1; page < 100; page++) {
+        try {
+            // contando páginas
+            for (page = 1; page < reader.getNumberOfPages(); page++) {
 
-            //lendo texto de cada página
-            pages = PdfTextExtractor.getTextFromPage(reader, page);
+                // lendo texto de cada página
+                pages = PdfTextExtractor.getTextFromPage(reader, page);
 
-                //transformando conteúdo de linha em array
-                String[] row = pages.split(",");//, -1);
+                // transformando conteúdo de linha página em array de strings
+                String[] row = pages.split("\\r\\n\\t", 1);
 
+                // contando palavras
                 for (int i = 0; i < row.length; i++) {
 
-                    if (row[i].contains("\n")) {
-                        String deleteLineBreak = row[i].replaceAll("\n", " ");
-                        String deleteNumbers = Remove.numbers(deleteLineBreak);
-                        String deleteWords = Remove.words(deleteNumbers);
-                        String deleteSpecialCharacter = Remove.specialCharacteres(deleteWords);
-                        conteudo = deleteSpecialCharacter;
+                    String deleteNumbers = Remove.numbers(row[i]);
 
-                        String[] novoConteudo = conteudo.split(",");
-                        for (int j = 0; j < novoConteudo.length; i++) {
+                    String deleteWords = Remove.words(deleteNumbers);
+                    String deleteMonths = Remove.months(deleteWords);
+                    String deleteSpecialCharacter = Remove.specialCharacteres(deleteMonths);
+                    String deleteSpaces = Remove.deleteSpaces(deleteSpecialCharacter);
 
-                            if (novoConteudo.toString().contains("aA")) {
-                                System.out.println("Encontrado!");
+                    String deleteSpaceBreak = Remove.deleteSpaceBreak(deleteSpaces);
+                    String deleteBreak = Remove.deleteBreak(deleteSpaceBreak);
+                    String letters = Remove.deleteLetters(deleteBreak);
+                    String content = letters;
+                    System.out.println(content);
+                    /*String[] espaco = content.split("-");
+                    int array[] = new int[0];
 
+                    for (int e = 0; e < array.length; e++) {
 
-                            } else {
-                                System.out.println("Erro");
-                            }
+                        if (espaco[e].length() > 0) {
+
+                            System.out.println(content.replace(espaco[e], "\n"));
+
+                        } else {
+
+                            System.out.println("Erro!");
+
+                            //System.out.println(content);
+
+                        }
+                    }*/
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Erro!");
+        }
+    }
+}
 
                             //ps.setString(1, conteudo);
                             //ps.execute();
-                        }
-                    }
-                }
-        }
-    }
-
-    public static String trimAll(String text){
-
-        String string = text.trim();
-
-        while (string.contains("  ")) {
-
-                string = string.replaceAll("  ", "");
-                //string = string.replaceAll("\\s+$", "");
-                //String texto_filtrado = str.replaceAll("\\s+$", "");
-
-        }
-        return string;
-    }
-
-
-
-}
