@@ -88,18 +88,13 @@ public class Remove {
     public static String deleteBreak(String pdf) {
 
         pdf = pdf.replace("\n", "-");
-        String caracter = "-";
-        for (int i = 0; i < 10; i--) {
-            //if (pdf.contains(caracter) && caracter.length() <= 0) {
-            //pdf.replaceAll(caracter, "\n");
 
-        }
-            return pdf;
+        return pdf;
     }
 
     public static String deleteLetters(String pdf) {
 
-        pdf = pdf.replace("aA", "a A\n");
+        pdf = pdf.replace("aA", "a A");
 
         return pdf;
     }

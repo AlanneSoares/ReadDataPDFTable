@@ -23,8 +23,8 @@ public class ReadDataPDFTable {
         int page;
 
 
-        //file = "c:/users/alanne.soares/documents/produtividade-juizes-mai-18.pdf";
-        file = "c:/users/alann/documents/produtividade-juizes-mai-18.pdf";
+        file = "c:/users/alanne.soares/documents/produtividade-juizes-mai-18.pdf";
+        //file = "c:/users/alann/documents/produtividade-juizes-mai-18.pdf";
 
         PdfReader reader = new PdfReader(file);
 
@@ -40,10 +40,11 @@ public class ReadDataPDFTable {
 //        Class.forName(driver);
 
         try {
+            String pronto = null;
             // contando páginas
             for (page = 1; page < reader.getNumberOfPages(); page++) {
+                System.out.println(page + 1);
 
-                // lendo texto de cada página
                 pages = PdfTextExtractor.getTextFromPage(reader, page);
 
                 // transformando conteúdo de linha página em array de strings
@@ -63,7 +64,58 @@ public class ReadDataPDFTable {
                     String deleteBreak = Remove.deleteBreak(deleteSpaceBreak);
                     String letters = Remove.deleteLetters(deleteBreak);
                     String content = letters;
-                    System.out.println(content);
+
+                    pronto += content;
+                }
+            }
+            System.out.println(pronto);
+        } catch (Exception e) {
+            System.out.println("Erro");
+        }
+    }
+}
+        /*lendo texto de cada página
+                pages = PdfTextExtractor.getTextFromPage(reader, page);
+
+                // transformando conteúdo de linha página em array de strings
+                String[] row = pages.split("\\r\\n\\t", 1);
+
+                // contando palavras
+                for (int i = 0; i < row.length; i++) {
+
+                    String deleteNumbers = Remove.numbers(row[i]);
+
+                    String deleteWords = Remove.words(deleteNumbers);
+                    String deleteMonths = Remove.months(deleteWords);
+                    String deleteSpecialCharacter = Remove.specialCharacteres(deleteMonths);
+                    String deleteSpaces = Remove.deleteSpaces(deleteSpecialCharacter);
+
+                    String deleteSpaceBreak = Remove.deleteSpaceBreak(deleteSpaces);
+                    String deleteBreak = Remove.deleteBreak(deleteSpaceBreak);
+                    String letters = Remove.deleteLetters(deleteBreak);
+                    String content = letters;
+
+
+
+
+                        if (content.contains("-")) {
+
+                            content.replace("-", "\n");
+                            System.out.println(content);
+
+                        }
+                    }
+
+
+
+                        //} else {
+                          //  System.out.println("Nada encontrado!");
+
+                        //}
+
+                        //break;
+                    //}
+
                     /*String[] espaco = content.split("-");
                     int array[] = new int[0];
 
@@ -77,17 +129,11 @@ public class ReadDataPDFTable {
 
                             System.out.println("Erro!");
 
-                            //System.out.println(content);
+                            //System.out.println(content);*/
 
-                        }
-                    }*/
-                }
-            }
-        } catch (Exception ex) {
-            System.out.println("Erro!");
-        }
-    }
-}
+
+
+
 
                             //ps.setString(1, conteudo);
                             //ps.execute();
