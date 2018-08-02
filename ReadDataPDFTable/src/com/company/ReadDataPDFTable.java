@@ -1,10 +1,16 @@
 package com.company;
 
+
+import java.util.ArrayList;
+
 // Ler pdf com iText
 // Está retirando das palavras "de", no qual não deveria
 
 import java.io.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.itextpdf.text.pdf.*;
 import com.itextpdf.text.pdf.parser.*;
 
@@ -40,15 +46,19 @@ public class ReadDataPDFTable {
 //        Class.forName(driver);
 
         try {
+
             String pronto = null;
+
             // contando páginas
-            for (page = 1; page < reader.getNumberOfPages(); page++) {
-                System.out.println(page + 1);
+            for (page = 1; page < reader.getNumberOfPages() + 1; page++) {
+
+                // imprimiu as 24 páginas
+                //System.out.println(page);
 
                 pages = PdfTextExtractor.getTextFromPage(reader, page);
 
                 // transformando conteúdo de linha página em array de strings
-                String[] row = pages.split("\\r\\n\\t", 1);
+                String[] row = pages.split("\\r\\n\\t");
 
                 // contando palavras
                 for (int i = 0; i < row.length; i++) {
@@ -63,12 +73,19 @@ public class ReadDataPDFTable {
                     String deleteSpaceBreak = Remove.deleteSpaceBreak(deleteSpaces);
                     String deleteBreak = Remove.deleteBreak(deleteSpaceBreak);
                     String letters = Remove.deleteLetters(deleteBreak);
-                    String content = letters;
+                    String content = letters.trim();
 
-                    pronto += content;
+                    String pdf = content;
+
+                    if (content.contains("-")){
+
+                        System.out.println(pdf.replace("-", "\n" +
+                        pdf.replace("--", "\n")) +
+                        pdf.replace("---", "\n"));
+                    }
                 }
             }
-            System.out.println(pronto);
+
         } catch (Exception e) {
             System.out.println("Erro");
         }

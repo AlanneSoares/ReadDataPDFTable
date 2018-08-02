@@ -75,7 +75,7 @@ public class Remove {
                 .replace("Acordo", "")
                 .replace("Juízes", "");
 
-            return pdf;
+        return pdf;
     }
 
     public static String deleteSpaceBreak(String pdf) {
@@ -100,7 +100,7 @@ public class Remove {
     }
 
 
-    public static String deleteSpaces(String pdf){
+    public static String deleteSpaces(String pdf) {
 
         pdf = pdf.trim();
 
