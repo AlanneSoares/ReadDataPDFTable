@@ -1,19 +1,20 @@
 package com.company;
 
 
-import java.util.ArrayList;
+/*
+
+ foi utilizado o itext para leitura do pdf
+
+
+ */
+import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.parser.*;
+
+import java.io.IOException;
+import java.sql.SQLException;
 
 // Ler pdf com iText
 // Está retirando das palavras "de", no qual não deveria
-
-import java.io.*;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import com.itextpdf.text.pdf.*;
-import com.itextpdf.text.pdf.parser.*;
 
 public class ReadDataPDFTable {
 
@@ -30,8 +31,8 @@ public class ReadDataPDFTable {
         int page;
 
 
-        //file = "c:/users/alanne.soares/documents/produtividade-juizes-mai-18.pdf";
-        file = "c:/users/alann/documents/produtividade-juizes-mai-18.pdf";
+        file = "c:/users/alanne.soares/documents/produtividade-juizes-mai-18.pdf";
+        //file = "c:/users/alann/documents/produtividade-juizes-mai-18.pdf";
 
         PdfReader reader = new PdfReader(file);
 
@@ -54,7 +55,19 @@ public class ReadDataPDFTable {
                 // imprimiu as 24 páginas
                 //System.out.println(page);
 
+
+                // COM O CÓDIGO ABAIXO FUNCIONA E RETIRA OS ESPAÇAMENTOS PORÉM REMOVE O QUE NÃO DEVERIA REMOVER
+                /*Rectangle rect = new Rectangle(0, 50, 490, 600);
+                RenderFilter filter = new RegionTextRenderFilter(rect);
+                TextExtractionStrategy strategy = new FilteredTextRenderListener(new LocationTextExtractionStrategy(), filter);
+                pages = PdfTextExtractor.getTextFromPage(reader, page, strategy);*/
+
+
+                // ASSIM FUNCIONA PEGANDO TUDO PORÉM NÃO FAZ O QUE FAZ O CÓDIGO ACIMA
                 pages = PdfTextExtractor.getTextFromPage(reader, page);
+
+                //PageSize.A4;
+                //int linhas = jTable1.getRowCount()-1;
 
                 // transformando conteúdo de linha página em array de strings
                 String[] row = pages.split("\\r\\n\\t");
