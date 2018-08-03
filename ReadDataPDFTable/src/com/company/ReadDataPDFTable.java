@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.itextpdf.text.pdf.*;
@@ -29,8 +30,8 @@ public class ReadDataPDFTable {
         int page;
 
 
-        file = "c:/users/alanne.soares/documents/produtividade-juizes-mai-18.pdf";
-        //file = "c:/users/alann/documents/produtividade-juizes-mai-18.pdf";
+        //file = "c:/users/alanne.soares/documents/produtividade-juizes-mai-18.pdf";
+        file = "c:/users/alann/documents/produtividade-juizes-mai-18.pdf";
 
         PdfReader reader = new PdfReader(file);
 
@@ -47,8 +48,6 @@ public class ReadDataPDFTable {
 
         try {
 
-            String pronto = null;
-
             // contando páginas
             for (page = 1; page < reader.getNumberOfPages() + 1; page++) {
 
@@ -64,27 +63,35 @@ public class ReadDataPDFTable {
                 for (int i = 0; i < row.length; i++) {
 
                     String deleteNumbers = Remove.numbers(row[i]);
-
                     String deleteWords = Remove.words(deleteNumbers);
                     String deleteMonths = Remove.months(deleteWords);
                     String deleteSpecialCharacter = Remove.specialCharacteres(deleteMonths);
                     String deleteSpaces = Remove.deleteSpaces(deleteSpecialCharacter);
-
                     String deleteSpaceBreak = Remove.deleteSpaceBreak(deleteSpaces);
                     String deleteBreak = Remove.deleteBreak(deleteSpaceBreak);
                     String letters = Remove.deleteLetters(deleteBreak);
                     String content = letters.trim();
 
-                    String pdf = content;
+                    while (content.contains(" ")) {
+                        String b = content.replace("-", "\n");
+                        String c = b.replace("\n\n", "\n");
+                        String d = c.replace("\n\n\n", "\n");
+                        
+                        System.out.println(d);
 
-                    if (content.contains("-")){
+                            break;
+                        }
 
-                        System.out.println(pdf.replace("-", "\n" +
-                        pdf.replace("--", "\n")) +
-                        pdf.replace("---", "\n"));
+
+                        //if (content.equals("-")){
+
+
+                        /*System.out.println(content.replace("-", "\n" +
+                        //content.replace("--", "\n")) +
+                        content.replace("---", "\n")));*/
                     }
                 }
-            }
+
 
         } catch (Exception e) {
             System.out.println("Erro");

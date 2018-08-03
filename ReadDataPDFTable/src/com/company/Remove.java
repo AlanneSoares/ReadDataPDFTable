@@ -69,7 +69,7 @@ public class Remove {
                 .replace("Produtividade", "")
                 .replace("sem", "")
                 .replace("com", "")
-                .replace("de", "")
+                .replace("", "")
                 .replace("Mérito", "")
                 .replace("Homologação", "")
                 .replace("Acordo", "")
@@ -110,5 +110,19 @@ public class Remove {
 
         }
         return pdf;
+    }
+
+    public static List<String> removeList(List<String> r) {
+
+        List<String> rowEmpty = new ArrayList<>(r);
+
+        for (String row : r) {
+            if (row.isEmpty()) {
+                rowEmpty.remove(row);
+            } else {
+                System.out.println("Nada encontrado");
+            }
+        }
+        return rowEmpty;
     }
 }
