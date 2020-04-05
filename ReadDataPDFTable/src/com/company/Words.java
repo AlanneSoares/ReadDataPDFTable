@@ -1,9 +1,7 @@
 package com.company;
 
 public class Words {
-
     public static String removeWords(String pdf) {
-
         /*pdf = pdf.replace("PODER", "")
                 .replace("JUDICIÁRIO", "")
                 .replace("ESTADO", "")
@@ -34,10 +32,6 @@ public class Words {
                 .replace("Mérito", "")
                 .replace("Homologação", "")
                 .replace("Acordo", "");*/
-
-
-
         return pdf;
     }
 }
-
