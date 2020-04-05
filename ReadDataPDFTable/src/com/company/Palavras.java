@@ -1,9 +1,7 @@
 package com.company;
 
 public class Palavras {
-
     public static String[] REMOVER = {
-
             "PODER",
             "JUDICIÁRIO",
             "DO",
