@@ -12,7 +12,6 @@ import java.util.List;
 
 public class ReadPDFTable {
     public static String getText() {
-
         PDFParser parser;
         PDDocument pdDoc;
         COSDocument cosDoc;
